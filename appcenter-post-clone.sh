@@ -26,13 +26,13 @@ echo "Executing Detox tests for Android..."
 cd android
 cd app
 cd build
-ls
 cd outputs
-ls
 cd apk
-ls
 cd debug
+
+echo "ls..."
 ls
+mv output.json package.json
 npx detox test -c android.emu.debug
 else 
 echo "Building the iOS project for Detox tests..."
