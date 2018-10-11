@@ -30,7 +30,7 @@ else
 echo "Building the iOS project for Detox tests..."
 npx detox build --configuration ios.sim.release;
 echo "Executing Detox tests for iOS..."
-npx detox test --configuration ios.sim.release --cleanup
+npx detox test --configuration ios.sim.release --loglevel verbose --cleanup
 fi
 
 #!echo "Supported devices:"
