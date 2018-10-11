@@ -34,7 +34,7 @@ emulator -list-avds
 npx detox build --configuration android.emu.debug 
 echo "Executing Detox tests for Android..."
 cp package.json android/app/build/outputs/apk/debug/package.json
-/Users/vsts/Library/Android/sdk/tools/emulator @Nexus_5X_API_24_-_GPlay
+/Users/vsts/Library/Android/sdk/tools/emulator @Nexus_5X_API_24_-_GPlay -port 49821
 npx detox test -c android.emu.debug --loglevel verbose
 else 
 echo "Building the iOS project for Detox tests..."
