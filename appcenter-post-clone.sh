@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 APPLESIMUTILS_VERSION=0.5.22
-cd /Users/vsts/Library/Android/sdk/tools
-emulator
+cd /Users/vsts/Library/Android/sdk/tools/bin
+avdmanager list avd
 echo "Installing applesimutils..."
 mkdir simutils
 cd simutils
