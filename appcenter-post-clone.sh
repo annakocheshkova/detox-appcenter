@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-$ANDROID_HOME/sdk/tools/bin/sdkmanager "system-images;android-24;google_apis;x86"
+$ANDROID_HOME/tools/bin/sdkmanager "system-images;android-24;google_apis;x86"
 APPLESIMUTILS_VERSION=0.5.22
 echo "Installing applesimutils..."
 mkdir simutils
