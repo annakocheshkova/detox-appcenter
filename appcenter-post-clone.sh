@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 APPLESIMUTILS_VERSION=0.5.22
+
+/Users/vsts/Library/Android/sdk/tools/bin/sdkmanager "system-images;android-24;google_apis;x86"
+
+/Users/vsts/Library/Android/sdk/tools/bin/sdkmanager --licenses
+
+
+touch ~/.android/repositories.cfg
+
 /Users/vsts/Library/Android/sdk/tools/bin/avdmanager create avd -n Nexus_5X_API_24_-_GPlay -k "system-images;android-24;googl
 e_apis;x86" --tag "google_apis" --device "Nexus 5"
 /Users/vsts/Library/Android/sdk/tools/bin/avdmanager list avd
