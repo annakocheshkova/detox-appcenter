@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 APPLESIMUTILS_VERSION=0.5.22
-
+cd /Users/vsts/Library/Android/sdk/tools
+ls
 echo "Installing applesimutils..."
 mkdir simutils
 cd simutils
@@ -21,7 +22,7 @@ npm install
 
 if [ -z "$APPCENTER_XCODE_PROJECT" ]; then 
 echo "Building the Android project for Detox tests..."
-cd /Users/vsts/Library/Android/sdk/tools
+
 emulator -list-avds
 npx detox build --configuration android.emu.debug 
 echo "Executing Detox tests for Android..."
