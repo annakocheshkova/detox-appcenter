@@ -21,9 +21,9 @@ npm install
 
 if [ -z "$APPCENTER_XCODE_PROJECT" ]; then 
 echo "Building the Android project for Detox tests..."
-npx detox build --configuration android.emu.release 
+npx detox build --configuration android.emu.debug 
 echo "Executing Detox tests for Android..."
-npx detox test --configuration android.emu.release --cleanup
+npx detox test --c android.emu.debug
 else 
 echo "Building the iOS project for Detox tests..."
 npx detox build --configuration ios.sim.release;
@@ -31,6 +31,6 @@ echo "Executing Detox tests for iOS..."
 npx detox test --configuration ios.sim.release --cleanup
 fi
 
-//echo "Supported devices:"
-//adb device list
-//xcrun simctl list
+#!echo "Supported devices:"
+#!adb device list
+#!xcrun simctl list
