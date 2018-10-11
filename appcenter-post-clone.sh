@@ -21,9 +21,7 @@ npm install
 
 if [ -z "$APPCENTER_XCODE_PROJECT" ]; then 
 echo "Building the Android project for Detox tests..."
-echo $ANDROID_HOME
-cd $ANDROID_HOME
-cd tools
+cd /Users/vsts/Library/Android/sdk/tools
 ./emulator -list-avds
 npx detox build --configuration android.emu.debug 
 echo "Executing Detox tests for Android..."
