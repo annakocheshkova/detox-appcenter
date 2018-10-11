@@ -20,8 +20,8 @@ echo "Installing dependencies for detox tests..."
 npm install
 
 echo "Building the project for Detox tests..."
-npx detox build --configuration ios.sim.release
 npx detox build --configuration android.emu.release
+npx detox build --configuration ios.sim.release
 
 echo "Supported devices:"
 xcrun simctl list
