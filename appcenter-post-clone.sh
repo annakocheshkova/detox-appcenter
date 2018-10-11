@@ -33,7 +33,7 @@ cd apk
 ls
 cd debug
 ls
-npx detox test --c android.emu.debug
+npx detox test -c android.emu.debug
 else 
 echo "Building the iOS project for Detox tests..."
 npx detox build --configuration ios.sim.release;
