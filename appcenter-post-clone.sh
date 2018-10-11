@@ -22,5 +22,9 @@ npm install
 echo "Building the project for Detox tests..."
 npx detox build --configuration ios.sim.release
 
+echo "Supported devices:"
+xcrun simctl list
+
 echo "Executing Detox tests..."
+npx detox test --configuration android.sim.release --cleanup
 npx detox test --configuration ios.sim.release --cleanup
