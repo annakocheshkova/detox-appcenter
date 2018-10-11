@@ -24,15 +24,6 @@ echo "Building the Android project for Detox tests..."
 npx detox build --configuration android.emu.debug 
 echo "Executing Detox tests for Android..."
 cp package.json android/app/build/outputs/apk/debug/package.json
-cd android
-cd app
-cd build
-cd outputs
-cd apk
-cd debug
-
-echo "ls..."
-cat output.json
 npx detox test -c android.emu.debug
 else 
 echo "Building the iOS project for Detox tests..."
