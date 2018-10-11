@@ -23,6 +23,16 @@ if [ -z "$APPCENTER_XCODE_PROJECT" ]; then
 echo "Building the Android project for Detox tests..."
 npx detox build --configuration android.emu.debug 
 echo "Executing Detox tests for Android..."
+cd android
+cd app
+cd build
+ls
+cd outputs
+ls
+cd apk
+ls
+cd debug
+ls
 npx detox test --c android.emu.debug
 else 
 echo "Building the iOS project for Detox tests..."
