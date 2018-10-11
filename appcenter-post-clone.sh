@@ -3,7 +3,6 @@ APPLESIMUTILS_VERSION=0.5.22
 
 /Users/vsts/Library/Android/sdk/tools/bin/sdkmanager "system-images;android-24;google_apis;x86"
 
-/Users/vsts/Library/Android/sdk/tools/bin/sdkmanager --licenses
 
 
 touch ~/.android/repositories.cfg
