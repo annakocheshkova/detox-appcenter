@@ -24,7 +24,7 @@ echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n emutest -k "system-
 #echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n emutest -k "system-images;android-25;google_apis;armeabi-v7a" --force
 #echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n emutest -k "system-images;android-28;google_apis;x86_64" --force
 
-cd $ANDROID_HOME/system-images/android-25/
+cd $ANDROID_HOME/system-images/
 ls
 
 $ANDROID_HOME/tools/bin/avdmanager list avd
