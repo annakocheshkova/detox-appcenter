@@ -1,8 +1,10 @@
 APPLESIMUTILS_VERSION=0.5.22
 
-      
-     
-#echo "Installing applesimutils..."
+IS_IOS =    [ -z "$APPCENTER_XCODE_PROJECT" ];
+if IS_IOS 
+then     
+echo "Installing applesimutils...";
+fi
 #mkdir simutils
 #cd simutils
 #curl https://raw.githubusercontent.com/wix/homebrew-brew/master/AppleSimulatorUtils-${APPLESIMUTILS_VERSION}.tar.gz -o applesimutils.tar.gz
@@ -60,9 +62,9 @@ echo "Executing Detox tests for Android..."
 
 
 npx detox test -c android.emu.debug --loglevel verbose
-else 
-echo "Building the iOS project for Detox tests..."
-npx detox build --configuration ios.sim.release;
-echo "Executing Detox tests for iOS..."
-npx detox test --configuration ios.sim.release --loglevel verbose --cleanup
+else
+      echo "Building the iOS project for Detox tests..."
+      npx detox build --configuration ios.sim.release;
+      echo "Executing Detox tests for iOS..."
+      npx detox test --configuration ios.sim.release --loglevel verbose --cleanup
 fi
