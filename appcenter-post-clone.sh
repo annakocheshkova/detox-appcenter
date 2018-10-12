@@ -8,8 +8,8 @@ APPLESIMUTILS_VERSION=0.5.22
       echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install emulator
       echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'platforms;android-25'
       echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'build-tools;25.0.3'
-      #echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-28;google_apis;x86_64'
-     echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-25;default;x86_64'
+      echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-28;google_apis;x86_64'
+     #echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-25;default;x86_64'
       #echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-25;google_apis;armeabi-v7a'
 
 #echo "Installing android AVD..."
@@ -20,8 +20,8 @@ echo "Starting daemon..."
 $ANDROID_HOME/platform-tools/adb devices | grep emulator | cut -f1 | while read line; do adb -s $line emu kill || true; done
 
 echo "Creating AVD..."
-echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n emutest -k "system-images;android-25;default;x86_64" --device "Nexus 5" --force
-#echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n emutest -k "system-images;android-25;google_apis;armeabi-v7a" --force
+#echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n emutest -k "system-images;android-25;default;x86_64" --device "Nexus 5" --force
+echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n emutest -k "system-images;android-25;google_apis;armeabi-v7a" --force
 #echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n emutest -k "system-images;android-28;google_apis;x86_64" --force
 
 
