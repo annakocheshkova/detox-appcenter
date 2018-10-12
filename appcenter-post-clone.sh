@@ -25,9 +25,6 @@ echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n emutest -k "system-
 #echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n emutest -k "system-images;android-28;google_apis;x86_64" --force
 
 
-echo "11111111111111"
-cat /Users/vsts/.android/avd/emutest.avd/config.ini
-
 
 $ANDROID_HOME/tools/bin/avdmanager list avd
 
@@ -61,8 +58,7 @@ npx detox build --configuration android.emu.debug
 echo "Executing Detox tests for Android..."
 #!cp package.json android/app/build/outputs/apk/debug/package.json
 
-echo "11111111111111"
-cat /Users/vsts/.android/avd/emutest.avd/config.ini
+$ANDROID_HOME/tools/android update avd --name emutest 
 npx detox test -c android.emu.debug --loglevel verbose
 else 
 echo "Building the iOS project for Detox tests..."
