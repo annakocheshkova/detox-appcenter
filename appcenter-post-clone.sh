@@ -8,7 +8,8 @@ APPLESIMUTILS_VERSION=0.5.22
       #echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install emulator
       #echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'platforms;android-28'
       #echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'build-tools;28.0.3'
-      echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-25;google_apis;armeabi-v7a'
+      echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-28;google_apis;x86_64'
+      #echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-25;google_apis;armeabi-v7a'
 
 #echo "Installing android AVD..."
 #$ANDROID_HOME/tools/bin/sdkmanager "system-images;android-24;google_apis;x86"
@@ -19,7 +20,8 @@ $ANDROID_HOME/platform-tools/adb devices
 #| grep emulator | cut -f1 | while read line; do adb -s $line emu kill || true; done
 
 echo "Creating AVD..."
-echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n Nexus_5X_API_27_-_GPlay -k "system-images;android-25;google_apis;armeabi-v7a" --force
+#echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n Nexus_5X_API_27_-_GPlay -k "system-images;android-25;google_apis;armeabi-v7a" --force
+echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n Nexus_5X_API_27_-_GPlay -k "system-images;android-28;google_apis;x86_64" --force
 
 $ANDROID_HOME/tools/bin/avdmanager list avd
 
