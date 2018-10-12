@@ -62,7 +62,7 @@ else
       
       nohup $ANDROID_HOME/emulator/emulator -avd emutest -gpu on  -no-accel  -no-boot-anim -partition-size 2048 -wipe-data -skin "1080x1920" & #> /dev/null 2>&1 & (uncomment to hide output)
       #comment line after shell to start emulator async
-      $ANDROID_HOME/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed | tr -d '\r') ]]; do sleep 1; done; input keyevent 82' 
+      $ANDROID_HOME/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed) ]]; do sleep 1; done; input keyevent 82' 
       
       echo "Building the Android project for Detox tests..."
       npx detox build --configuration android.emu.debug 
