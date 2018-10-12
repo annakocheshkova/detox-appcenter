@@ -30,7 +30,7 @@ $ANDROID_HOME/tools/bin/avdmanager list avd
 
 echo "Starting AVD..."
 nohup $ANDROID_HOME/emulator/emulator -avd emutest -no-accel -no-snapshot & #> /dev/null 2>&1 &
-      $ANDROID_HOME/platform-tools/adb wait-for-device # shell 'while [[ -z $(getprop sys.boot_completed | tr -d '\r') ]]; do sleep 1; done; input keyevent 82'
+      $ANDROID_HOME/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed | tr -d '\r') ]]; do sleep 1; done; input keyevent 82'
       
 echo "Installing applesimutils..."
 mkdir simutils
