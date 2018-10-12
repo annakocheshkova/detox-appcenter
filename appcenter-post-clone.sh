@@ -41,6 +41,10 @@ cd ..
 cd android-28/google_apis/x86_64/
 ls
 
+echo "11111111111111"
+cd /Users/vsts/.android/avd/emutest.avd/
+ls
+
 $ANDROID_HOME/tools/bin/avdmanager list avd
 
 echo "Starting AVD..."
