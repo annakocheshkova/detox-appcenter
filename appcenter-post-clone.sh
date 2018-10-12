@@ -8,7 +8,7 @@ APPLESIMUTILS_VERSION=0.5.22
       echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install emulator
       echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'platforms;android-27'
       echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'build-tools;27.0.3'
-      echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-27;google_apis;x86'
+      echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-27;google_apis;x86_64'
 
 #echo "Installing android AVD..."
 #$ANDROID_HOME/tools/bin/sdkmanager "system-images;android-24;google_apis;x86"
@@ -19,7 +19,7 @@ $ANDROID_HOME/platform-tools/adb devices
 #| grep emulator | cut -f1 | while read line; do adb -s $line emu kill || true; done
 
 echo "Creating AVD..."
-echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n Nexus_5X_API_27_-_GPlay -k "system-images;android-27;google_apis;x86" --force
+echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n Nexus_5X_API_27_-_GPlay -k "system-images;android-27;google_apis;x86_64" --force
 
 $ANDROID_HOME/tools/bin/avdmanager list avd
 
