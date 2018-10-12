@@ -30,6 +30,7 @@ echo "Building the Android project for Detox tests..."
 npx detox build --configuration android.emu.debug 
 echo "Executing Detox tests for Android..."
 #!cp package.json android/app/build/outputs/apk/debug/package.json
+$ANDROID_HOME/tools/emulator -avd Nexus_5X_API_24_-_GPlay -netdelay none -netspeed full
 npx detox test -c android.emu.debug --loglevel verbose
 else 
 echo "Building the iOS project for Detox tests..."
