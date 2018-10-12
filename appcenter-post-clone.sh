@@ -4,9 +4,13 @@ echo "Installing android AVD..."
 $ANDROID_HOME/tools/bin/sdkmanager "system-images;android-24;google_apis;x86"
 touch ~/.android/repositories.cfg
 
-$ANDROID_HOME/tools/bin/avdmanager create avd -n Nexus_5X_API_24_-_GPlay -k "system-images;android-24;google_apis;x86" --tag "google_apis" --device "Nexus 5"
-$ANDROID_HOME/tools/bin/avdmanager list avd
+echo "Starting daemon..."
+$ANDROID_HOME/platform-tools/adb devices | grep emulator | cut -f1 | while read line; do adb -s $line emu kill || true; done
 
+echo "Creating AVD..."
+$ANDROID_HOME/tools/bin/avdmanager create avd -n Nexus_5X_API_24_-_GPlay -k "system-images;android-24;google_apis;x86" --tag "google_apis" --device "Nexus 5"
+
+echo "Starting AVD..."
 nohup $ANDROID_HOME/emulator/emulator -avd Nexus_5X_API_24_-_GPlay -no-snapshot > /dev/null 2>&1 &
       $ANDROID_HOME/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed | tr -d '\r') ]]; do sleep 1; done; input keyevent 82'
       
