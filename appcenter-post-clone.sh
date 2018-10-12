@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 echo "Installing android AVD..."
-$ANDROID_HOME/tools/bin/sdkmanager "system-images;android-24;google_apis;x86"
-touch ~/.android/repositories.cfg
+$ANDROID_HOME/tools/bin/sdkmanager --list
+#!touch ~/.android/repositories.cfg
 
-$ANDROID_HOME/tools/bin/avdmanager create avd -n Nexus_5X_API_24_-_GPlay -k "system-images;android-24;google_apis;x86" --tag "google_apis" --device "Nexus 5"
+$ANDROID_HOME/tools/bin/avdmanager create avd -n Nexus_5X_API_24_-_GPlay -k "system-images;android-24;google_apis-google-24;x86" --tag "google_apis" --device "Nexus 5"
 $ANDROID_HOME/tools/bin/avdmanager list avd
 
 $ANDROID_HOME/tools/emulator -avd Nexus_5X_API_24_-_GPlay -netdelay none -netspeed full
