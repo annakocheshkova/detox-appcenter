@@ -1,16 +1,16 @@
 APPLESIMUTILS_VERSION=0.5.22
 
-
+#export ANDROID_SDK_HOME = /Users/vsts/.android/avd/emutest.avd/
       # Install all required sdk packages
       echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --update
-      #echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install tools
-      #echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install platform-tools
-      #echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install emulator
-      #echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'platforms;android-28'
-      #echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'build-tools;28.0.3'
-      echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-28;google_apis;x86_64'
+      echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install tools
+      echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install platform-tools
+      echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install emulator
+      echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'platforms;android-25'
+      echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'build-tools;25.0.3'
+      #echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-28;google_apis;x86_64'
       echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-25;default;x86_64'
-      echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-25;google_apis;armeabi-v7a'
+      #echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-25;google_apis;armeabi-v7a'
 
 #echo "Installing android AVD..."
 #$ANDROID_HOME/tools/bin/sdkmanager "system-images;android-24;google_apis;x86"
@@ -24,26 +24,10 @@ echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n emutest -k "system-
 #echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n emutest -k "system-images;android-25;google_apis;armeabi-v7a" --force
 #echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n emutest -k "system-images;android-28;google_apis;x86_64" --force
 
-echo "11111111111111"
-cd $ANDROID_HOME/system-images/android-25/default/x86_64/
-ls
 
 echo "11111111111111"
-cd ..
-cd ..
-cd google_apis/armeabi-v7a/
-ls
+cat /Users/vsts/.android/avd/emutest.avd/config.ini
 
-echo "11111111111111"
-cd ..
-cd ..
-cd ..
-cd android-28/google_apis/x86_64/
-ls
-
-echo "11111111111111"
-cd /Users/vsts/.android/avd/emutest.avd/
-ls
 
 $ANDROID_HOME/tools/bin/avdmanager list avd
 
@@ -76,6 +60,9 @@ echo "Building the Android project for Detox tests..."
 npx detox build --configuration android.emu.debug 
 echo "Executing Detox tests for Android..."
 #!cp package.json android/app/build/outputs/apk/debug/package.json
+
+echo "11111111111111"
+cat /Users/vsts/.android/avd/emutest.avd/config.ini
 npx detox test -c android.emu.debug --loglevel verbose
 else 
 echo "Building the iOS project for Detox tests..."
