@@ -1,14 +1,15 @@
-#!/usr/bin/env bash
+APPLESIMUTILS_VERSION=0.5.22
 
 echo "Installing android AVD..."
-#!$ANDROID_HOME/tools/bin/sdkmanager --list
+$ANDROID_HOME/tools/bin/sdkmanager "system-images;android-24;google_apis;x86"
 touch ~/.android/repositories.cfg
 
-$ANDROID_HOME/tools/bin/avdmanager create avd -n Nexus_5X_API_28_-_GPlay -k "emulator" --tag "google_apis" --device "Nexus 5"
+$ANDROID_HOME/tools/bin/avdmanager create avd -n Nexus_5X_API_24_-_GPlay -k "system-images;android-24;google_apis;x86" --tag "google_apis" --device "Nexus 5"
 $ANDROID_HOME/tools/bin/avdmanager list avd
 
-$ANDROID_HOME/tools/emulator -avd Nexus_5X_API_28_-_GPlay -netdelay none -netspeed full
-APPLESIMUTILS_VERSION=0.5.22
+nohup $ANDROID_HOME/emulator/emulator -avd Nexus_5X_API_24_-_GPlay -no-snapshot > /dev/null 2>&1 &
+      $ANDROID_HOME/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed | tr -d '\r') ]]; do sleep 1; done; input keyevent 82'
+      
 echo "Installing applesimutils..."
 mkdir simutils
 cd simutils
@@ -28,6 +29,8 @@ echo "Installing dependencies for detox tests..."
 npm install
 
 if [ -z "$APPCENTER_XCODE_PROJECT" ]; then 
+
+      
 echo "Building the Android project for Detox tests..."
 npx detox build --configuration android.emu.debug 
 echo "Executing Detox tests for Android..."
