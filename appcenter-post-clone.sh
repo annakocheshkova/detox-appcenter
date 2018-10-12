@@ -8,9 +8,9 @@ APPLESIMUTILS_VERSION=0.5.22
       #echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install emulator
       #echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'platforms;android-28'
       #echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'build-tools;28.0.3'
-      #echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-28;google_apis;x86_64'
+      echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-28;google_apis;x86_64'
       echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-25;default;x86_64'
-      #echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-25;google_apis;armeabi-v7a'
+      echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-25;google_apis;armeabi-v7a'
 
 #echo "Installing android AVD..."
 #$ANDROID_HOME/tools/bin/sdkmanager "system-images;android-24;google_apis;x86"
@@ -24,7 +24,21 @@ echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n emutest -k "system-
 #echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n emutest -k "system-images;android-25;google_apis;armeabi-v7a" --force
 #echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n emutest -k "system-images;android-28;google_apis;x86_64" --force
 
-cd $ANDROID_HOME/system-images/
+echo "11111111111111"
+cd $ANDROID_HOME/system-images/android-25/default/x86_64/
+ls
+
+echo "11111111111111"
+cd ..
+cd ..
+cd google_apis/x86_64/
+ls
+
+echo "11111111111111"
+cd ..
+cd ..
+cd ..
+cd android-28/google_apis/armeabi-v7a/
 ls
 
 $ANDROID_HOME/tools/bin/avdmanager list avd
