@@ -31,14 +31,14 @@ ls
 echo "11111111111111"
 cd ..
 cd ..
-cd google_apis/x86_64/
+cd google_apis/armeabi-v7a/
 ls
 
 echo "11111111111111"
 cd ..
 cd ..
 cd ..
-cd android-28/google_apis/armeabi-v7a/
+cd android-28/google_apis/x86_64/
 ls
 
 $ANDROID_HOME/tools/bin/avdmanager list avd
