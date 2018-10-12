@@ -1,15 +1,34 @@
 APPLESIMUTILS_VERSION=0.5.22
 
-#export ANDROID_SDK_HOME = /Users/vsts/.android/avd/emutest.avd/
-      # Install all required sdk packages
-      echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --update
-      echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install tools
-      echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install platform-tools
-      echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install emulator
-      echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'platforms;android-27'
-      echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'build-tools;27.0.3'
+      
+     
+#echo "Installing applesimutils..."
+#mkdir simutils
+#cd simutils
+#curl https://raw.githubusercontent.com/wix/homebrew-brew/master/AppleSimulatorUtils-${APPLESIMUTILS_VERSION}.tar.gz -o applesimutils.tar.gz
+#tar xzvf applesimutils.tar.gz
+#sh buildForBrew.sh .
+#cd ..
+#export PATH=$PATH:./simutils/build/Build/Products/Release
+
+echo "Installing correct node version..."
+export HOMEBREW_NO_AUTO_UPDATE=1
+brew uninstall node@6
+brew install node@8
+brew link node@8 --force --overwrite
+
+echo "Installing dependencies for detox tests..."
+npm install
+
+if [ -z "$APPCENTER_XCODE_PROJECT" ]; then 
+ echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --update
+      #echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install tools
+      #echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install platform-tools
+      #echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install emulator
+      #echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'platforms;android-27'
+      #echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'build-tools;27.0.3'
       echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-27;google_apis;x86'
-     #echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-25;default;x86_64'
+      #echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-25;default;x86_64'
       #echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-25;google_apis;armeabi-v7a'
 
 #echo "Installing android AVD..."
@@ -29,29 +48,10 @@ echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n emutest -k "system-
 $ANDROID_HOME/tools/bin/avdmanager list avd
 
 echo "Starting AVD..."
-nohup $ANDROID_HOME/emulator/emulator -avd emutest -wipe-data -no-accel -qemu & #> /dev/null 2>&1 &
+# -qemu -no-window 
+nohup $ANDROID_HOME/emulator/emulator -avd emutest -no-snapshot -noaudio -no-boot-animm -no-accel & #> /dev/null 2>&1 &
       $ANDROID_HOME/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed | tr -d '\r') ]]; do sleep 1; done; input keyevent 82'
       
-echo "Installing applesimutils..."
-mkdir simutils
-cd simutils
-curl https://raw.githubusercontent.com/wix/homebrew-brew/master/AppleSimulatorUtils-${APPLESIMUTILS_VERSION}.tar.gz -o applesimutils.tar.gz
-tar xzvf applesimutils.tar.gz
-sh buildForBrew.sh .
-cd ..
-export PATH=$PATH:./simutils/build/Build/Products/Release
-
-echo "Installing correct node version..."
-export HOMEBREW_NO_AUTO_UPDATE=1
-brew uninstall node@6
-brew install node@8
-brew link node@8 --force --overwrite
-
-echo "Installing dependencies for detox tests..."
-npm install
-
-if [ -z "$APPCENTER_XCODE_PROJECT" ]; then 
-
       
 echo "Building the Android project for Detox tests..."
 npx detox build --configuration android.emu.debug 
