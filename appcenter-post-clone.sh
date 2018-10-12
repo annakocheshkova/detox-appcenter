@@ -1,5 +1,5 @@
 #If an iOS app in AppCenter (APPCENTER_XCODE_PROJECT is AC env var)
-if ![ -n "$APPCENTER_XCODE_PROJECT" ]; then
+if [ -n "$APPCENTER_XCODE_PROJECT" ]; then
       APPLESIMUTILS_VERSION=0.5.22    
       echo "Installing applesimutils..."
       mkdir simutils
