@@ -2,8 +2,8 @@
     "appcenter_apps": [
         {
             "branch_template": "master",
-            "owner_name": "anna-kocheshkova-cehg",
-            "app_name": "detox-test"
+            "owner_name": "Patricks-Fantastic-Org",
+            "app_name": "Detox-Tests"
         }
     ]
 }
