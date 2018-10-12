@@ -35,9 +35,10 @@ else
       #echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'build-tools;27.0.3'
 
       #!! Run sdkmanager --list to see what's installed/available
+      echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-21;google_apis;armeabi-v7a'
+      
       #echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-27;google_apis;x86'
 
-      echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-21;google_apis;x86_64'
       #the problem may be in google-apis image, default one may be useful.
       #echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-25;default;x86_64'
 
@@ -48,7 +49,7 @@ else
       $ANDROID_HOME/platform-tools/adb devices | grep emulator | cut -f1 | while read line; do adb -s $line emu kill || true; done
 
       echo "Creating AVD..."
-      echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n emutest -k "system-images;android-21;google_apis;x86_64" --device "Nexus 5" --force
+      echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n emutest -k "system-images;android-21;google_apis;armeabi-v7a" --device "Nexus 5" --force
       #echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n emutest -k "system-images;android-27;google_apis;x86" --device "Nexus 5" --force
       #echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n emutest -k "system-images;android-25;default;x86_64" --device "Nexus 5" --force
       #echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n emutest -k "system-images;android-25;google_apis;armeabi-v7a" --force
@@ -57,10 +58,10 @@ else
       $ANDROID_HOME/tools/bin/avdmanager list avd
 
       echo "Starting AVD..."
-      #some flags to play with: -qemu -no-window -enable-kvm -no-boot-anim  -no-snapshot -noaudio
+      #some flags to play with: -qemu -no-window -enable-kvm -no-snapshot -noaudio -no-accel 
       #https://stackoverflow.com/questions/47748948/android-emulator-never-finishes-booting-when-no-window-flag-is-used
       
-      nohup $ANDROID_HOME/emulator/emulator -avd emutest -gpu on  -no-accel  -no-boot-anim -partition-size 2048 -wipe-data -skin "1080x1920" & #> /dev/null 2>&1 & (uncomment to hide output)
+      nohup $ANDROID_HOME/emulator/emulator -avd emutest -gpu on   -no-boot-anim -partition-size 2048 -wipe-data -skin "1080x1920" & #> /dev/null 2>&1 & (uncomment to hide output)
       #comment line after shell to start emulator async
       $ANDROID_HOME/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed) ]]; do sleep 1; done; input keyevent 82' 
       
