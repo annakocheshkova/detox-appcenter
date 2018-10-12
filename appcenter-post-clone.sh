@@ -6,9 +6,9 @@ APPLESIMUTILS_VERSION=0.5.22
       echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install tools
       echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install platform-tools
       echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install emulator
-      echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'platforms;android-25'
-      echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'build-tools;25.0.3'
-      echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-28;google_apis;x86_64'
+      echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'platforms;android-27'
+      echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'build-tools;27.0.3'
+      echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-27;google_apis;x86'
      #echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-25;default;x86_64'
       #echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-25;google_apis;armeabi-v7a'
 
@@ -21,14 +21,13 @@ $ANDROID_HOME/platform-tools/adb devices | grep emulator | cut -f1 | while read 
 
 echo "Creating AVD..."
 #echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n emutest -k "system-images;android-25;default;x86_64" --device "Nexus 5" --force
-echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n emutest -k "system-images;android-25;google_apis;armeabi-v7a" --force
+echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n emutest -k "system-images;android-27;google_apis;x86" --device "Nexus 5" --force
 #echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n emutest -k "system-images;android-28;google_apis;x86_64" --force
 
 
 
 $ANDROID_HOME/tools/bin/avdmanager list avd
 
-echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --update
 echo "Starting AVD..."
 nohup $ANDROID_HOME/emulator/emulator -avd emutest -wipe-data -qemu -enable-kvm -noaudio & #> /dev/null 2>&1 &
       $ANDROID_HOME/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed | tr -d '\r') ]]; do sleep 1; done; input keyevent 82'
