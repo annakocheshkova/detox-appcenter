@@ -28,8 +28,9 @@ echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n emutest -k "system-
 
 $ANDROID_HOME/tools/bin/avdmanager list avd
 
+echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --update
 echo "Starting AVD..."
-nohup $ANDROID_HOME/emulator/emulator -avd emutest -no-boot-anim -noaudio -no-snapshot & #> /dev/null 2>&1 &
+nohup $ANDROID_HOME/emulator/emulator -avd emutest -no-window -no-boot-anim -noaudio -no-snapshot & #> /dev/null 2>&1 &
       $ANDROID_HOME/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed | tr -d '\r') ]]; do sleep 1; done; input keyevent 82'
       
 echo "Installing applesimutils..."
@@ -58,7 +59,7 @@ npx detox build --configuration android.emu.debug
 echo "Executing Detox tests for Android..."
 #!cp package.json android/app/build/outputs/apk/debug/package.json
 
-$ANDROID_HOME/tools/android update avd --name emutest 
+
 npx detox test -c android.emu.debug --loglevel verbose
 else 
 echo "Building the iOS project for Detox tests..."
