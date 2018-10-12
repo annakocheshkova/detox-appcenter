@@ -35,8 +35,9 @@ else
       #echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'build-tools;27.0.3'
 
       #!! Run sdkmanager --list to see what's installed/available
-      echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-27;google_apis;x86'
+      #echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-27;google_apis;x86'
 
+      echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-21;google_apis;x86_64'
       #the problem may be in google-apis image, default one may be useful.
       #echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-25;default;x86_64'
 
@@ -47,6 +48,7 @@ else
       $ANDROID_HOME/platform-tools/adb devices | grep emulator | cut -f1 | while read line; do adb -s $line emu kill || true; done
 
       echo "Creating AVD..."
+      echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n emutest -k "system-images;android-21;google_apis;x86_64" --device "Nexus 5" --force
       echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n emutest -k "system-images;android-27;google_apis;x86" --device "Nexus 5" --force
       #echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n emutest -k "system-images;android-25;default;x86_64" --device "Nexus 5" --force
       #echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n emutest -k "system-images;android-25;google_apis;armeabi-v7a" --force
