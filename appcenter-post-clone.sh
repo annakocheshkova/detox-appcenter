@@ -58,7 +58,7 @@ else
       #some flags to play with: -qemu -no-window -enable-kvm 
       #https://stackoverflow.com/questions/47748948/android-emulator-never-finishes-booting-when-no-window-flag-is-used
       
-      nohup $ANDROID_HOME/emulator/emulator -avd emutest -no-snapshot -noaudio -no-boot-animm -no-accel & #> /dev/null 2>&1 & (uncomment to hide output)
+      nohup $ANDROID_HOME/emulator/emulator -avd emutest -no-snapshot -noaudio -no-boot-anim -no-accel & #> /dev/null 2>&1 & (uncomment to hide output)
       #comment line after shell to start emulator async
       $ANDROID_HOME/platform-tools/adb wait-for-device #shell 'while [[ -z $(getprop sys.boot_completed | tr -d '\r') ]]; do sleep 1; done; input keyevent 82' 
       
