@@ -8,7 +8,7 @@ echo "Starting daemon..."
 $ANDROID_HOME/platform-tools/adb devices | grep emulator | cut -f1 | while read line; do adb -s $line emu kill || true; done
 
 echo "Creating AVD..."
-$ANDROID_HOME/tools/bin/avdmanager create avd -n Nexus_5X_API_24_-_GPlay -k "system-images;android-24;google_apis;x86" --tag "google_apis" --device "Nexus 5"
+echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n Nexus_5X_API_24_-_GPlay -k "system-images;android-24;google_apis;x86" --tag "google_apis" --device "Nexus 5" --force
 
 echo "Starting AVD..."
 nohup $ANDROID_HOME/emulator/emulator -avd Nexus_5X_API_24_-_GPlay -no-snapshot > /dev/null 2>&1 &
