@@ -1,5 +1,7 @@
 APPLESIMUTILS_VERSION=0.5.22
 
+echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --update
+
 echo "Installing android AVD..."
 $ANDROID_HOME/tools/bin/sdkmanager "system-images;android-24;google_apis;x86"
 touch ~/.android/repositories.cfg
