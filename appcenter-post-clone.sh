@@ -1,7 +1,7 @@
 APPLESIMUTILS_VERSION=0.5.22
 
 IS_IOS =    [ -z "$APPCENTER_XCODE_PROJECT" ];
-if IS_IOS 
+if [IS_IOS ];
 then     
 echo "Installing applesimutils...";
 fi
