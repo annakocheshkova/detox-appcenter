@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 echo "Installing android AVD..."
-$ANDROID_HOME/tools/bin/sdkmanager --list
-#!touch ~/.android/repositories.cfg
+#!$ANDROID_HOME/tools/bin/sdkmanager --list
+touch ~/.android/repositories.cfg
 
 $ANDROID_HOME/tools/bin/avdmanager create avd -n Nexus_5X_API_28_-_GPlay -k "system-images;android-28;google_apis_playstore;x86_64" --tag "google_apis" --device "Nexus 5"
 $ANDROID_HOME/tools/bin/avdmanager list avd
