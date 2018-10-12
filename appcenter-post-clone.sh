@@ -1,22 +1,30 @@
 APPLESIMUTILS_VERSION=0.5.22
 
-echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --update
 
-echo "Installing android AVD..."
-$ANDROID_HOME/tools/bin/sdkmanager "system-images;android-24;google_apis;x86"
-touch ~/.android/repositories.cfg
+      # Install all required sdk packages
+      echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --update
+      echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install tools
+      echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install platform-tools
+      echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install emulator
+      echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'platforms;android-27'
+      echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'build-tools;27.0.3'
+      echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-27;google_apis;x86'
+
+#echo "Installing android AVD..."
+#$ANDROID_HOME/tools/bin/sdkmanager "system-images;android-24;google_apis;x86"
+#touch ~/.android/repositories.cfg
 
 echo "Starting daemon..."
 $ANDROID_HOME/platform-tools/adb devices 
 #| grep emulator | cut -f1 | while read line; do adb -s $line emu kill || true; done
 
 echo "Creating AVD..."
-echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n Nexus_5X_API_24_-_GPlay -k "system-images;android-24;google_apis;x86" --tag "google_apis" --device "Nexus 5" --force
+echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd -n Nexus_5X_API_27_-_GPlay -k "system-images;android-27;google_apis;x86" --force
 
 $ANDROID_HOME/tools/bin/avdmanager list avd
 
 echo "Starting AVD..."
-nohup $ANDROID_HOME/emulator/emulator -avd Nexus_5X_API_24_-_GPlay -no-snapshot & #> /dev/null 2>&1 &
+nohup $ANDROID_HOME/emulator/emulator -avd Nexus_5X_API_27_-_GPlay -no-snapshot & #> /dev/null 2>&1 &
       $ANDROID_HOME/platform-tools/adb wait-for-device #shell 'while [[ -z $(getprop sys.boot_completed | tr -d '\r') ]]; do sleep 1; done; input keyevent 82'
       
 echo "Installing applesimutils..."
